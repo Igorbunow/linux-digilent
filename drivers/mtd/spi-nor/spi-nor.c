@@ -500,7 +500,7 @@ EXPORT_SYMBOL_GPL(spi_nor_wait_till_ready);
  */
 static int write_sr_cr(struct spi_nor *nor, u8 *sr_cr)
 {
-	int ret;
+	ssize_t ret;
 
 	write_enable(nor);
 
