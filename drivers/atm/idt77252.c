@@ -2268,6 +2268,8 @@ idt77252_init_tx(struct idt77252_dev *card, struct vc_map *vc,
 	vc->scq = alloc_scq(card, vc->class);
 	if (!vc->scq) {
 		printk("%s: can't get SCQ.\n", card->name);
+		kfree(card->vcs[0]);
+		card->vcs[0] = NULL;
 		return -ENOMEM;
 	}
 
