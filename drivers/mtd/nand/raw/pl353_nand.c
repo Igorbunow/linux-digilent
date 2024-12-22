@@ -1335,7 +1335,7 @@ static int pl353_nand_probe(struct platform_device *pdev)
 	platform_set_drvdata(pdev, xnfc);
 	chip->setup_data_interface = pl353_setup_data_interface;
 	chip->dummy_controller.ops = &pl353_nand_controller_ops;
-	ret = nand_scan(mtd, 1);
+	ret = nand_scan(chip, 1);
 	if (ret) {
 		dev_err(xnfc->dev, "could not scan the nand chip\n");
 		return ret;
@@ -1363,10 +1363,10 @@ static int pl353_nand_probe(struct platform_device *pdev)
 static int pl353_nand_remove(struct platform_device *pdev)
 {
 	struct pl353_nand_controller *xnfc = platform_get_drvdata(pdev);
-	struct mtd_info *mtd = nand_to_mtd(&xnfc->chip);
+	//struct mtd_info *mtd = nand_to_mtd(&xnfc->chip);
 
 	/* Release resources, unregister device */
-	nand_release(mtd);
+	nand_release(&xnfc->chip);
 
 	return 0;
 }

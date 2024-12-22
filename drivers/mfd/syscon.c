@@ -169,9 +169,7 @@ struct regmap *syscon_regmap_lookup_by_compatible(const char *s)
 		return ERR_PTR(-ENODEV);
 
 	regmap = syscon_node_to_regmap(syscon_np);
-
-	if (property)
-		of_node_put(syscon_np);
+	of_node_put(syscon_np);
 
 	return regmap;
 }

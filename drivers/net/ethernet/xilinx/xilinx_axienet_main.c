@@ -293,9 +293,9 @@ void axienet_set_multicast_list(struct net_device *ndev)
 	} else if (!netdev_mc_empty(ndev)) {
 		struct netdev_hw_addr *ha;
 
-		reg = axienet_ior(lp, XAE_FMI_OFFSET);
-		reg &= ~XAE_FMI_PM_MASK;
-		axienet_iow(lp, XAE_FMI_OFFSET, reg);
+		reg = axienet_ior(lp, XAE_FMC_OFFSET);
+		reg &= ~XAE_FMC_PM_MASK;
+		axienet_iow(lp, XAE_FMC_OFFSET, reg);
 
 		i = 0;
 		netdev_for_each_mc_addr(ha, ndev) {
